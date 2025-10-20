@@ -1,6 +1,7 @@
 # Dependencies
 # Bỏ qua thư mục chứa các gói đã cài đặt
 /node_modules
+docker-compose.yml
 
 # Environment variables
 # Không bao giờ đưa các file biến môi trường chứa thông tin nhạy cảm lên Git
