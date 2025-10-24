@@ -28,13 +28,8 @@ Hệ thống bao gồm các thành phần chính sau:
 
 Đây là cách đơn giản và được khuyến khích để chạy toàn bộ hệ thống chỉ với một vài lệnh.
 
-### Bước 1: Tải mã nguồn
 
-```bash
-Clone dự án về
-```
-
-### Bước 2: Tạo các file cấu hình Docker
+### Bước 1: Tạo các file cấu hình Docker
 
 Bạn cần tạo các file sau trong dự án của mình.
 
@@ -133,7 +128,7 @@ volumes:
   mongo-data:
 ```
 
-### Bước 3: Khởi chạy hệ thống
+### Bước 2: Khởi chạy hệ thống
 
 Mở terminal ở thư mục gốc của dự án và chạy lệnh:
 ```bash
@@ -179,7 +174,7 @@ Sau khi hệ thống đã chạy, bạn có thể dùng Postman để kiểm tra
 
 ### 3. Tạo sản phẩm mới
 * **Method**: `POST`
-* **URL**: `http://localhost:3001/products/api/products`
+* **URL**: `http://localhost:3003/products/api/products`
 * **Authorization**: Chọn `Bearer Token` và dán `token` đã copy ở bước 2.
 * **Body** (`raw`, `JSON`):
     ```json
@@ -195,17 +190,12 @@ Sau khi hệ thống đã chạy, bạn có thể dùng Postman để kiểm tra
 
 ### 4. Tạo đơn hàng mới
 * **Method**: `POST`
-* **URL**: `http://localhost:3000/orders/create` (Lưu ý: đường dẫn này có thể khác tùy theo code của bạn)
+* **URL**: `http://localhost:3003/products/api/products/buy` (Lưu ý: đường dẫn này có thể khác tùy theo code của bạn)
 * **Authorization**: Tiếp tục dùng `Bearer Token`.
 * **Body** (`raw`, `JSON`):
     ```json
     {
-        "products": [
-            {
-                "productId": "DÁN_ID_SẢN_PHẨM_VỪA_TẠO_Ở_TRÊN_VÀO_ĐÂY",
-                "quantity": 1
-            }
-        ]
+      "ids":"hasvhavhvchav"
     }
     ```
  ![alt text](public/buy.png)
@@ -214,3 +204,4 @@ Sau khi hệ thống đã chạy, bạn có thể dùng Postman để kiểm tra
 
 
 #
+
