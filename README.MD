@@ -1,110 +1,7 @@
 # E-Project: Hệ thống Microservices Bán hàng
 
-## Cài đặt và Chạy dự án với Docker
 
-Đây là cách đơn giản và được khuyến khích để chạy toàn bộ hệ thống chỉ với một vài lệnh.
-
-
-### Bước 1: Tạo các file cấu hình Docker
-
-Bạn cần tạo các file sau trong dự án của mình.
-
-#### a. Tạo `Dockerfile` cho mỗi service
-
-Tạo một file tên là `Dockerfile` trong **mỗi thư mục service** (`auth`, `product`, `order`, `api-gateway`) với nội dung giống hệt nhau:
-
-```dockerfile
-# Sử dụng một image Node.js chính thức làm nền
-FROM node:18-alpine
-
-# Tạo thư mục làm việc bên trong container
-WORKDIR /app
-
-# Sao chép package.json và package-lock.json
-COPY package*.json ./
-
-# Cài đặt các dependencies
-RUN npm install
-
-# Sao chép toàn bộ mã nguồn của service vào
-COPY . .
-
-# Mở cổng mà ứng dụng sẽ chạy
-EXPOSE 3000
-
-# Lệnh để khởi chạy ứng dụng
-CMD ["npm", "start"]
-```
-
-#### b. Tạo file `docker-compose.yml`
-
-Ở thư mục **gốc** của dự án, tạo một file tên là `docker-compose.yml` với nội dung sau:
-
-```yaml
-services:
-  # Service MongoDB
-  mongo:
-    image: mongo
-    ports:
-      - "27017:27017"
-    volumes:
-      - mongo-data:/data/db
-
-  # Service RabbitMQ
-  rabbitmq:
-    image: rabbitmq:3-management
-    ports:
-      - "5672:5672"
-      - "15672:15672"
-
-  # Service Auth
-  auth:
-    build: ./auth
-    ports:
-      - "3001:3000"
-    environment:
-      - MONGODB_AUTH_URI=mongodb://mongo:27017/auth_db
-      - JWT_SECRET=daylamotkhoabimatratmanhcuaban
-    depends_on:
-      - mongo
-
-  # Service Product
-  product:
-    build: ./product
-    ports:
-      - "3002:3000"
-    environment:
-      - MONGODB_PRODUCT_URI=mongodb://mongo:27017/product_db
-    depends_on:
-      - mongo
-      - rabbitmq
-
-  # Service Order
-  order:
-    build: ./order
-    ports:
-      - "3003:3000"
-    environment:
-      - MONGODB_ORDER_URI=mongodb://mongo:27017/order_db
-    depends_on:
-      - mongo
-      - rabbitmq
-
-  # API Gateway
-  api-gateway:
-    build: ./api-gateway
-    ports:
-      - "3000:3000"
-    depends_on:
-      - auth
-      - product
-      - order
-
-volumes:
-  mongo-data:
-```
-
-### Bước 2: Khởi chạy hệ thống
+### Khởi chạy hệ thống
 
 Mở terminal ở thư mục gốc của dự án và chạy lệnh:
 ```bash
@@ -180,5 +77,6 @@ Sau khi hệ thống đã chạy, bạn có thể dùng Postman để kiểm tra
 
 
 #
+
 
 
