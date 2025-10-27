@@ -1,29 +1,5 @@
 # E-Project: Hệ thống Microservices Bán hàng
 
-Đây là một dự án backend mô phỏng một hệ thống thương mại điện tử đơn giản, được xây dựng theo kiến trúc microservices.
-
-## Kiến trúc hệ thống
-
-Hệ thống bao gồm các thành phần chính sau:
-* **API Gateway**: Cổng chính tiếp nhận tất cả request từ client và điều hướng đến các service phù hợp.
-* **Auth Service**: Xử lý tất cả các vấn đề liên quan đến xác thực người dùng (đăng ký, đăng nhập, JWT).
-* **Product Service**: Quản lý thông tin về sản phẩm.
-* **Order Service**: Xử lý logic đặt hàng và tương tác với các service khác qua message queue.
-* **MongoDB**: Cơ sở dữ liệu NoSQL để lưu trữ dữ liệu cho các service.
-* **RabbitMQ**: Message Broker để giao tiếp bất đồng bộ giữa các service (ví dụ: khi một đơn hàng được tạo).
-
-
----
-
-## Yêu cầu cài đặt
-
-Để chạy dự án này, bạn cần cài đặt các phần mềm sau trên máy tính của mình:
-* [Docker](https://www.docker.com/products/docker-desktop/) và Docker Compose
-* [Postman](https://www.postman.com/downloads/) (để test API)
-* [Git](https://git-scm.com/downloads/)
-
----
-
 ## Cài đặt và Chạy dự án với Docker
 
 Đây là cách đơn giản và được khuyến khích để chạy toàn bộ hệ thống chỉ với một vài lệnh.
@@ -204,4 +180,5 @@ Sau khi hệ thống đã chạy, bạn có thể dùng Postman để kiểm tra
 
 
 #
+
 
